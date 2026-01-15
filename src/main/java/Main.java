@@ -3,15 +3,13 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
         BookDAO bookDAO = new BookDAO();
-        Book newBook = new Book(1); // Example book with ID 1
+        Book newBook = new Book(2, "Chocolate Chip", "Birgitte", "This is how you make chocolate chip cookies."); // Example book with ID 1
         
         try {
-            int bookId = bookDAO.addBook(newBook);
-            if (bookId != -1) {
-                System.out.println("Book added with ID: " + bookId);
-            } else {
-                System.out.println("Failed to add book.");
-            }
+            bookDAO.addBook(newBook);
+            Book retrievedBook = bookDAO.getBookById(7);
+            System.out.println("Retrieved Book: " + retrievedBook.getText());
+            // bookDAO.deleteAllBooks();
         } catch (SQLException e) {
             e.printStackTrace();
         }
